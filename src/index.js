@@ -20,7 +20,7 @@ mongoose.connect(dbRoute, { useNewUrlParser: true });
 let db = mongoose.connection;
 
 db.once('open', () => console.log('Connected to the DB!'));
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
