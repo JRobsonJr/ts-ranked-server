@@ -1,0 +1,17 @@
+{
+    "version": 2,
+    "name": "ts-ranked-server",
+    "env": {
+        "DB_LOGIN": "@db_login",
+        "DB_PASSWORD": "@db_password"
+    },
+    "builds": [
+        {
+            "src": "build/index.js",
+            "use": "@now/node-server" 
+        }
+    ],
+    "routes": [
+        { "src": "/(.*)", "dest": "build/index.js"}
+    ]
+}
