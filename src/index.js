@@ -4,6 +4,8 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import Track from './track';
+import User from './user';
+
 import 'dotenv/config';
 
 const API_PORT = 5000;
@@ -36,6 +38,13 @@ router.get('/tracks', (req, res) => {
 router.put('/tracks', (req, res) => {
     const { id, score } = req.body;
     Track.findOneAndUpdate({ id: id }, { $push: { 'scores': score }, $inc: { 'total': score, 'voters': 1 } }, err => {
+        if (err) return res.json({ success: false, error: err });
+        return res.json({ success: true });
+    });
+});
+
+router.put('/users', (req, res) => {
+    User.findOneAndUpdate({ }, { $inc: { 'total': 1 } }, err => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true });
     });
